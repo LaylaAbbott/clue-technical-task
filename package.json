@@ -1,10 +1,18 @@
 {
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@playwright/test": "^1.64.0",
     "@types/node": "^26.6.5",
-    "typescript": "^7.0.2"
+    "eslint": "^10.12.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-unused-imports": "^4.4.1",
+    "prettier": "^3.9.10",
+    "typescript": "5.9",
+    "typescript-eslint": "^8.71.1"
   },
   "scripts": {
-    "npm run test:ui": " npx playwright test --ui"
+    "npm run test:ui": " npx playwright test --ui",
+    "format": "prettier --write .",
+    "lint": "eslint . --fix"
   }
 }
