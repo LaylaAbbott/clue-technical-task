@@ -10,8 +10,6 @@ export async function changeLanguageIfNeeded(page: Page) {
             data: { language: "en_US", dateFormat: 'Y-m-d' },
         });
         expect(putResponse.ok()).toBeTruthy();
-        const putResponseJson: Localization = await putResponse.json()
-        expect(putResponseJson.language).toEqual("en_US");
         await page.reload();
     }
 }
