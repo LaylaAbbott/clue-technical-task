@@ -10,8 +10,9 @@ export class LoginPage {
   constructor(page: Page) {
     this.page = page;
     this.pageHeaderText = page.getByRole('heading', { name: 'Login' });
-    this.usernameTextField = page.getByRole('textbox', { name: 'Username' });
-    this.passwordTextField = page.getByRole('textbox', { name: 'Password' });
+    // have to use this style as this doesn't change if the sites language changes
+    this.usernameTextField = page.locator('input[name="username"]');
+    this.passwordTextField = page.locator('input[name="password"]');
     this.loginButton = page.getByRole('button', { name: 'Login' });
   }
 
