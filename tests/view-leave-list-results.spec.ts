@@ -6,10 +6,10 @@ import { changeLanguageIfNeeded } from '../api/changeLanguageIfNeeded';
 
 let baseUrl = 'https://opensource-demo.orangehrmlive.com/web/index.php'
 
-test.beforeEach('User can log in to site as an admin', async ({page }) => {
+test.beforeEach('User can log in to site as an admin', async ({ page }) => {
     // Go to page
     await page.goto(`${baseUrl}/auth/login`);
-    
+
     // Enter credentials and click log in
     const loginPage = new LoginPage(page);
     await loginPage.enterUsername();
@@ -27,12 +27,20 @@ test('User can navigate to leave and search between two dates', async ({ page })
     // This expect won't work if the language hasn't been changed to english
     const dashboardPage = new DashboardPage(page);
     await expect(dashboardPage.pageHeader).toBeVisible();
-    
+
     // Click Leave
     await dashboardPage.leaveSidebarButton.click();
     const leavePage = new LeavePage(page);
     await expect(leavePage.pageHeaderText).toBeVisible();
-   
+
+    // Open From Date calendar
+    await leavePage.openCalendar("From Date")
+
+    // Change From Date to be two years ago
+    await leavePage.changeYearInCalendar("2024")
+    await leavePage.changeDayOfMonthInCalendar()
+    
+    await page.waitForTimeout(500)
+    await leavePage.closeCalendarIfNeeded()
+    await page.screenshot({ path: 'screenshot4.png' });
 });
-/*
- await leavePage.changeCalendarYearTo2024()
