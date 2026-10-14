@@ -7,7 +7,6 @@ import { waitForResponseAndReturnNumberOfResults } from '../api/waitForResponseA
 
 test.describe
   .serial('Admin user can check the leave periods of employees over a specified date range', () => {
-  let dashboardPage;
   test.beforeEach('User can log in to site as an admin', async ({ page }) => {
     // Go to page
     await page.goto('/web/index.php/auth/login');
@@ -27,7 +26,7 @@ test.describe
     await changeLanguageIfNeeded(page);
 
     // This expect won't work if the language hasn't been changed to english
-    dashboardPage = new DashboardPage(page);
+    const dashboardPage = new DashboardPage(page);
     await expect(dashboardPage.pageHeader).toBeVisible();
 
     // Click Leave and assert the page loads
@@ -38,7 +37,7 @@ test.describe
 
   test('User can search between two dates and view results', async ({ page }) => {
     // Click Leave
-    dashboardPage = new DashboardPage(page);
+    const dashboardPage = new DashboardPage(page);
     await dashboardPage.leaveSidebarButton.click();
 
     // Fill From Date with chosen date
@@ -56,7 +55,5 @@ test.describe
 
     // Assert the search has taken place (different assertions for if there are results/no results)
     await leavePage.assertSearchHasTakenPlace(resultsNumber);
-
-    await page.screenshot({ path: 'FinalState.png' });
   });
 });
