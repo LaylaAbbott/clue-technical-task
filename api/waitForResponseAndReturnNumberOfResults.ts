@@ -1,4 +1,4 @@
-import { Page, expect } from '@playwright/test';
+import { Page } from '@playwright/test';
 
 // I don't like giving data and rels the any type but to save time I did that here
 type Results = { data: any; meta: { total: number }; rels: any };
