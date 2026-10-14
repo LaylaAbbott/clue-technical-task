@@ -19,10 +19,10 @@ export class LoginPage {
 
   async enterUsername() {
     dotenv.config();
-    await this.usernameTextField.fill(process.env.ADMIN_USERNAME as string);
+    await this.usernameTextField.fill(process.env.ADMIN_USERNAME);
   }
 
   async enterPassword() {
-    await this.passwordTextField.fill(process.env.ADMIN_PASSWORD as string);
+    await this.passwordTextField.fill(process.env.ADMIN_PASSWORD);
   }
 }
