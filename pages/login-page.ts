@@ -1,4 +1,5 @@
 import { type Locator, type Page } from '@playwright/test';
+import * as dotenv from 'dotenv';
 
 export class LoginPage {
   readonly page: Page;
@@ -13,14 +14,15 @@ export class LoginPage {
     // have to use this style as this doesn't change if the sites language changes
     this.usernameTextField = page.locator('input[name="username"]');
     this.passwordTextField = page.locator('input[name="password"]');
-    this.loginButton = page.getByRole('button', { name: 'Login' });
+    this.loginButton = page.locator('[class*="login-button"]');
   }
 
   async enterUsername() {
-    await this.usernameTextField.fill('Admin');
+    dotenv.config();
+    await this.usernameTextField.fill(process.env.ADMIN_USERNAME as string);
   }
 
   async enterPassword() {
-    await this.passwordTextField.fill('admin123');
+    await this.passwordTextField.fill(process.env.ADMIN_PASSWORD as string);
   }
 }
