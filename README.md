@@ -19,3 +19,9 @@ To run the tests:
 To run the tests in UI mode:
 
 `npm run test-ui`
+
+## Linting and formatting 
+
+To lint and format the project files:
+
+`npm run lint; npm run format`
